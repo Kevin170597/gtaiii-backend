@@ -7,4 +7,4 @@ app.use(express.json());
 
 app.use(require("./routes/employees"));
 
-app.listen(3030, () => console.log("server running at port 3030"));
+app.listen(3030, () => console.log("Server running at port 3030"));

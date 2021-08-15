@@ -67,4 +67,24 @@ router.get("/bands/:id", (req, res) => {
     });
 });
 
+router.get("/vehicles", (req, res) => {
+    mysqlConnection.query("SELECT * FROM vehicles", (err, rows, fields) => {
+        if(!err) {
+            res.json(rows);
+        } else {
+            console.log(err)
+        }
+    });
+});
+
+router.get("/vehicles/:id", (req, res) => {
+    mysqlConnection.query("SELECT * FROM vehicles WHERE id=?", [req.params.id], (err, rows, fields) => {
+        if(!err) {
+            res.json(rows[0]);
+        } else {
+            console.log(err)
+        }
+    });
+});
+
 module.exports = router;

@@ -87,4 +87,14 @@ router.get("/vehicles/:id", (req, res) => {
     });
 });
 
+router.get("/missions", (req, res) => {
+    mysqlConnection.query("SELECT * FROM missions", (err, rows, fields) => {
+        if(!err) {
+            res.json(rows);
+        } else {
+            console.log(err)
+        }
+    });
+});
+
 module.exports = router;

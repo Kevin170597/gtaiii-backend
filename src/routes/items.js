@@ -82,7 +82,7 @@ router.get("/vehicles/:id", (req, res) => {
         if(!err) {
             res.json(rows[0]);
         } else {
-            console.log(err)
+            console.log(err);
         }
     });
 });
@@ -92,7 +92,17 @@ router.get("/missions", (req, res) => {
         if(!err) {
             res.json(rows);
         } else {
-            console.log(err)
+            console.log(err);
+        }
+    });
+});
+
+router.get("/missions/:id", (req, res) => {
+    mysqlConnection.query("SELECT * FROM missions WHERE id=?", [req.params.id], (err, rows, fields) => {
+        if(!err) {
+            res.json(rows[0]);
+        } else {
+            console.log(err);
         }
     });
 });

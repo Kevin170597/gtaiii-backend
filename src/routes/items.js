@@ -107,4 +107,14 @@ router.get("/missions/:id", (req, res) => {
     });
 });
 
+router.get("/missions/city/:city", (req, res) => {
+    mysqlConnection.query("SELECT * FROM missions WHERE city=?", [req.params.city], (err, rows, fields) => {
+        if(!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 module.exports = router;

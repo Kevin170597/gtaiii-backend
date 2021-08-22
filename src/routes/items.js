@@ -97,10 +97,10 @@ router.get("/missions", (req, res) => {
     });
 });
 
-router.get("/missions/:id", (req, res) => {
-    mysqlConnection.query("SELECT * FROM missions WHERE id=?", [req.params.id], (err, rows, fields) => {
+router.get("/missions/:owner", (req, res) => {
+    mysqlConnection.query("SELECT * FROM missions WHERE owner=?", [req.params.owner], (err, rows, fields) => {
         if(!err) {
-            res.json(rows[0]);
+            res.json(rows);
         } else {
             console.log(err);
         }

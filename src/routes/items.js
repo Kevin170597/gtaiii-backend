@@ -127,6 +127,16 @@ router.get("/phones", (req, res) => {
     });
 });
 
+router.get("/phones/:city", (req, res) => {
+    mysqlConnection.query("SELECT * FROM phones where city=?", [req.params.city], (err, rows, fields) => {
+        if(!err) {
+            res.json(rows)
+        } else {
+            console.log(err)
+        }
+    });
+});
+
 router.get("/phonemissions", (req, res) => {
     mysqlConnection.query("SELECT * FROM phone_missions", (err, rows, fields) => {
         if(!err) {
@@ -136,5 +146,7 @@ router.get("/phonemissions", (req, res) => {
         }
     });
 });
+
+
 
 module.exports = router;

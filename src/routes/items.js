@@ -117,4 +117,24 @@ router.get("/missions/city/:city", (req, res) => {
     });
 });
 
+router.get("/phones", (req, res) => {
+    mysqlConnection.query("SELECT * FROM phones", (err, rows, fields) => {
+        if(!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+router.get("/phonemissions", (req, res) => {
+    mysqlConnection.query("SELECT * FROM phone_missions", (err, rows, fields) => {
+        if(!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 module.exports = router;

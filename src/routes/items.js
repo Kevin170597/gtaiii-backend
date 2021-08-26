@@ -147,6 +147,16 @@ router.get("/phonemissions", (req, res) => {
     });
 });
 
+router.get("/phonemissions/:owner", (req, res) => {
+    mysqlConnection.query("SELECT * FROM phone_missions where owner=?", [req.params.owner], (err, rows, fields) => {
+        if(!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 
 
 module.exports = router;

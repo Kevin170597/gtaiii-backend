@@ -18,8 +18,9 @@ app.get("/", (req, res) => {
 app.use("/items", require("./routes/items"));
 app.use("/guns", require("./routes/guns"));
 app.use("/bands", require("./routes/bands"));
+app.use("/vehicles", require("./routes/vehicles"));
 app.use("/missions", require("./routes/missions"));
 app.use("/phones", require("./routes/phones"));
-app.use("phonemissions", require("./routes/phonemissions"));
+app.use("/phonemissions", require("./routes/phonemissions"));
 
 app.listen(port, () => console.log("Server running at port 3030"));

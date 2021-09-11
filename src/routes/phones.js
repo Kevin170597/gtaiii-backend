@@ -4,19 +4,19 @@ const router = express.Router();
 const mysqlConnection = require("../database");
 
 router.get("/", (req, res) => {
-    mysqlConnection.query("SELECT * FROM items_basics", (err, rows, fields) => {
+    mysqlConnection.query("SELECT * FROM phones", (err, rows, fields) => {
         if(!err) {
             res.json(rows);
         } else {
-            console.log(err)
+            console.log(err);
         }
     });
 });
 
-router.get("/:id", (req, res) => {
-    mysqlConnection.query("SELECT * FROM items_basics WHERE id=?", [req.params.id], (err, rows, fields) => {
+router.get("/:city", (req, res) => {
+    mysqlConnection.query("SELECT * FROM phones where city=?", [req.params.city], (err, rows, fields) => {
         if(!err) {
-            res.json(rows[0]);
+            res.json(rows)
         } else {
             console.log(err)
         }

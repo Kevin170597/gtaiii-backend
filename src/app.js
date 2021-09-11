@@ -11,6 +11,15 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(require("./routes/items"));
+app.get("/", (req, res) => {
+    res.send("GTA III Guide to 100%")
+})
+
+app.use("/items", require("./routes/items"));
+app.use("/guns", require("./routes/guns"));
+app.use("/bands", require("./routes/bands"));
+app.use("/missions", require("./routes/missions"));
+app.use("/phones", require("./routes/phones"));
+app.use("phonemissions", require("./routes/phonemissions"));
 
 app.listen(port, () => console.log("Server running at port 3030"));

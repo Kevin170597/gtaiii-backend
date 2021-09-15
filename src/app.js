@@ -25,5 +25,6 @@ app.use("/phonemissions", require("./routes/phonemissions"));
 app.use("/rc", require("./routes/rc_toyz"));
 app.use("/4x4", require("./routes/4x4"));
 app.use("/rampages", require("./routes/rampages"));
+app.use("/packages", require("./routes/packages"));
 
 app.listen(port, () => console.log("Server running at port 3030"));

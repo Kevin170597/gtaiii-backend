@@ -27,5 +27,6 @@ app.use("/4x4", require("./routes/4x4"));
 app.use("/rampages", require("./routes/rampages"));
 app.use("/packages", require("./routes/packages"));
 app.use("/jumps", require("./routes/jumps"));
+app.use("/garage", require("./routes/garages"));
 
 app.listen(port, () => console.log("Server running at port 3030"));

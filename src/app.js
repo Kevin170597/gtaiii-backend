@@ -2,17 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-var port = process.env.PORT || 3030;
+var PORT = process.env.PORT || 3030;
 
 app.use(express.json());
 
 app.use(cors());
-
-/*app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});*/
 
 app.get("/", (req, res) => {
     res.send("GTA III Guide to 100%")
@@ -32,4 +26,4 @@ app.use("/packages", require("./routes/packages"));
 app.use("/jumps", require("./routes/jumps"));
 app.use("/garage", require("./routes/garages"));
 
-app.listen(port, () => console.log("Server running at port 3030"));
+app.listen(PORT, () => console.log("Server running at port 3030"));

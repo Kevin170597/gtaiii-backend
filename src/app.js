@@ -22,8 +22,6 @@ app.use(express.json());
     next();
 });*/
 
-app.set('trust proxy', 1)
-
 app.use(cors({
     origin: ["https://gtaiii.netlify.app", "http://localhost:3000"],
     methods: ["GET", "POST"],
@@ -32,6 +30,8 @@ app.use(cors({
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.enable("trust proxy");
 app.use(session({
     key: "gtaiii",
     secret: "gta3guide",

@@ -37,7 +37,7 @@ router.post("/login", (req, res) => {
                     req.session.user = result;
                     res.send(result);
                 } else {
-                    res.send({message: "Wrong name or password!"});
+                    res.send(error/*{message: "Wrong name or password!"}*/);
                 }
             });
         } else {

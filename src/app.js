@@ -31,7 +31,7 @@ app.use(cors({
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.enable("trust proxy");
+app.enable("trust proxy", 1);
 app.use(session({
     key: "gtaiii",
     secret: "gta3guide",
@@ -42,7 +42,8 @@ app.use(session({
         secure: true,
         expires: 365 * 24 * 60 * 60 * 1000
     },
-    store: sessionStore
+    store: sessionStore,
+    sameSite: "none"
 }));
 
 app.get("/", (req, res) => {

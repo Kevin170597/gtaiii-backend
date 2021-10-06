@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(cors({
-    origin: ["http://localhost:3000", "http://gtaiii.netlify.app"],
+    origin: "http://gtaiii.netlify.app",
     methods: ["GET", "POST"],
     credentials: true
 }));

@@ -37,9 +37,8 @@ app.use(session({
     secret: "gta3guide",
     resave: false,
     saveUninitialized: false,
-    proxy: false,
+    proxy: true,
     cookie: {
-        secure: true,
         expires: 365 * 24 * 60 * 60 * 1000
     },
     store: sessionStore,

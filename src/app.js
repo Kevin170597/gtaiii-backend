@@ -2,13 +2,13 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const session = require("express-session");
-const MySQLStore = require("express-mysql-session")(session);
+//const MySQLStore = require("express-mysql-session")(session);
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const db = require("./database");
 
-const sessionStore = new MySQLStore({}, db);
+//const sessionStore = new MySQLStore({}, db);
 
 var PORT = process.env.PORT || 3030;
 
@@ -41,8 +41,7 @@ app.use(session({
     cookie: {
         expires: 365 * 24 * 60 * 60 * 1000
     },
-    store: sessionStore,
-    sameSite: "none"
+    //store: sessionStore,
 }));
 
 app.get("/", (req, res) => {

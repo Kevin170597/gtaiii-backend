@@ -6,42 +6,53 @@ const saltRounds = 10;
 
 const db = require("../database");
 
+const { validationResult } = require("express-validator");
+const registerValidator = require("../validators/registerValidator");
+const loginValidator = require("../validators/loginValidator");
+
 router.get("/", (req, res) => {
     db.query("SELECT * FROM users", (err, rows, filed) => {
         res.json(rows)
     });
 });
 
-router.post("/register", (req, res) => {
+router.post("/register", registerValidator, (req, res) => {
+    const errors = validationResult(req);
+    console.log(errors)
+    if(!errors.isEmpty()) {
+        return res.send(errors.mapped())
+    } else {
     const user = req.body.user;
     const email = req.body.email;
     const password = req.body.password;
     bcrypt.hash(password, saltRounds, (err, hash) => {
         db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)", [user, email, hash], (err, result) => {
-            console.log(err)
-            console.log(result)
+            res.send({
+                result: result,
+                success: "success",
+                user: user,
+                email: email
+            })
         });
     });
+    }
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", loginValidator, (req, res) => {
+    const errors = validationResult(req);
+    console.log(errors)
+    if (!errors.isEmpty()) {
+        return res.send(errors.mapped())
+    }
+    
     const user = req.body.user;
-    const password = req.body.password;
     db.query("SELECT * FROM users WHERE name = ?", user, (err, result) => {
         if (err) {
             res.send({err: err})
         }
         if (result > [0]) {
-            bcrypt.compare(password, result[0].password, (error, response) => {
-                if (response) {
-                    req.session.user = result;
-                    res.send(result);
-                } else {
-                    res.send(error/*{message: "Wrong name or password!"}*/);
-                }
-            });
-        } else {
-            res.send({message: "User doesn't exist"});
+            req.session.user = result;
+            res.send(result);
         }
     });
 });

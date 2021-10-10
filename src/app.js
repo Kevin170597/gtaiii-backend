@@ -39,8 +39,8 @@ app.use(session({
     saveUninitialized: false,
     proxy: true,
     cookie: {
-        sameSite: "none",
-        secure: true,
+        //sameSite: "none",
+        //secure: true,
         expires: 365 * 24 * 60 * 60 * 1000
     },
     store: sessionStore,

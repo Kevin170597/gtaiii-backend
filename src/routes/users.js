@@ -29,9 +29,7 @@ router.post("/register", registerValidator, (req, res) => {
         db.query("INSERT INTO users (name, email, password) VALUES (?,?,?)", [user, email, hash], (err, result) => {
             res.send({
                 result: result,
-                success: "success",
-                user: user,
-                email: email
+                success: "success"
             })
         });
     });
@@ -52,7 +50,10 @@ router.post("/login", loginValidator, (req, res) => {
         }
         if (result > [0]) {
             req.session.user = result;
-            res.send(result);
+            res.send({
+                result: result,
+                success: "success"
+            });
         }
     });
 });
